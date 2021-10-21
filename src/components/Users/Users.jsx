@@ -3,13 +3,13 @@ import {
 	Col,
 	ColHead,
 	Row
-} from './CustomComponents';
+} from '../CustomComponents';
 import React, { useEffect, useState } from 'react';
 
 import { Link } from "react-router-dom";
-import ModalColumnSelect from './ModalColumSelect';
+import ModalColumnSelect from '../ModalColumSelect';
 import axios from 'axios';
-import { baseUrl } from '../core/environment.const';
+import { baseUrl } from '../../core/environment.const';
 
 const typeColumns = ['name', 'username', 'email', 'phone', 'website'];
 
