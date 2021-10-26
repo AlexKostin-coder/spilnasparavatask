@@ -23,12 +23,12 @@ const ModalColumnSelect = props => {
 	const [searchColumns, setSearchColumns] = useState('');
 
 	const searchOption = (option) => {
-		return option.toUpperCase().indexOf(searchColumns.toUpperCase()) != -1;
+		return option.toUpperCase().indexOf(searchColumns.toUpperCase()) !== -1;
 	}
 
 	const selectionOption = (option) => {
 		const newWhichViewColumns = whichViewColumns.includes(option)
-			? whichViewColumns.filter(item => item != option)
+			? whichViewColumns.filter(item => item !== option)
 			: [...whichViewColumns, option];
 		selectionColumns(newWhichViewColumns);
 	}

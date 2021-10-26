@@ -3,31 +3,23 @@ import {
 	ProfileWrapper
 } from './CustomComponents';
 import React, { useEffect, useState } from 'react';
+import {
+	useDispatch,
+	useSelector
+} from 'react-redux';
 
-import axios from 'axios';
-import { baseUrl } from "../core/environment.const";
+import { getUser } from '../core/users/users.actions';
 import { useParams } from "react-router-dom";
+import { userSelector } from '../core/users/users.selectors';
 
 const User = () => {
 	const { userId } = useParams();
-	const [user, setUser] = useState({});
-
-	const getUser = async () => {
-		try {
-			const { data, status } = await axios.get(`${baseUrl}/${userId}`);
-			if (!status) {
-				throw new Error('Сервер не доступний!');
-			}
-			setUser(data);
-		}
-		catch (e) {
-			console.log(e)
-		}
-	};
+	const dispatch = useDispatch();
+	const user = useSelector(userSelector(userId));
 
 	useEffect(() => {
-		getUser();
-	}, []);
+		dispatch(getUser(userId));
+	}, [userId]);
 
 	const {
 		name,

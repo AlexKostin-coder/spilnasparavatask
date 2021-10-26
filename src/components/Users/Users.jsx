@@ -5,20 +5,27 @@ import {
 	Row
 } from '../CustomComponents';
 import React, { useEffect, useState } from 'react';
+import {
+	useDispatch,
+	useSelector
+} from 'react-redux';
 
 import { Link } from "react-router-dom";
 import ModalColumnSelect from '../ModalColumSelect';
-import axios from 'axios';
-import { baseUrl } from '../../core/environment.const';
+import { getUsers } from '../../core/users/users.actions';
+import { usersSelector } from '../../core/users/users.selectors';
 
 const typeColumns = ['name', 'username', 'email', 'phone', 'website'];
 
 const Users = () => {
 
-	const [users, setUsers] = useState([]);
+	const users = useSelector(usersSelector);
+
+	const [users1, setUsers] = useState([]);
 	const [direction, setDirection] = useState(true);
 	const [whichViewColumns, setWhichViewColumns] = useState(typeColumns);
 	const [showSelectColumnsModal, setShowSelectColumnsModal] = useState(false);
+	const dispatch = useDispatch();
 
 	const sortData = (field) => {
 		const copyUsers = users.concat();
@@ -44,19 +51,6 @@ const Users = () => {
 		setWhichViewColumns(newWhichViewColumns);
 	}
 
-	const getUsers = async () => {
-		try {
-			const { data, status } = await axios.get(baseUrl);
-			if (!status) {
-				throw new Error('Сервер не доступний!');
-			}
-			setUsers(data);
-		}
-		catch (e) {
-			console.log(e)
-		}
-	};
-
 	const getOptionColumns = () => {
 		const localStore = JSON.parse(localStorage.getItem('spilnaSpravaStore'));
 		if (localStore) {
@@ -65,7 +59,7 @@ const Users = () => {
 	}
 
 	useEffect(() => {
-		getUsers();
+		dispatch(getUsers());
 		getOptionColumns();
 	}, []);
 
