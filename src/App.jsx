@@ -7,7 +7,7 @@ import {
 import { Provider } from 'react-redux'
 import React from 'react';
 import User from './components/User';
-import Users from './components/Users/Users';
+import UsersComponent from './components/Users/UsersComponent';
 import store from "./redux/store";
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
             <User />
           </Route>
           <Route path="/">
-            <Users />
+            <UsersComponent />
           </Route>
         </Switch>
       </Router>

@@ -5,31 +5,23 @@ import {
 	Row
 } from '../CustomComponents';
 import React, { useEffect, useState } from 'react';
-import {
-	useDispatch,
-	useSelector
-} from 'react-redux';
 
 import { Link } from "react-router-dom";
 import ModalColumnSelect from '../ModalColumSelect';
-import { getUsers } from '../../core/users/users.actions';
-import { usersSelector } from '../../core/users/users.selectors';
 
 const typeColumns = ['name', 'username', 'email', 'phone', 'website'];
 
-const Users = () => {
-
-	const users = useSelector(usersSelector);
-
-	const [users1, setUsers] = useState([]);
+const Users = props => {
+	const [users, setUsers] = useState([]);
 	const [direction, setDirection] = useState(true);
 	const [whichViewColumns, setWhichViewColumns] = useState(typeColumns);
 	const [showSelectColumnsModal, setShowSelectColumnsModal] = useState(false);
-	const dispatch = useDispatch();
+
 
 	const sortData = (field) => {
-		const copyUsers = users.concat();
+		const copyUsers = [...users];
 
+		setDirection(!direction);
 		const sortUsers = direction
 			? copyUsers.sort((a, b) => {
 				if (a[field] > b[field]) {
@@ -43,7 +35,7 @@ const Users = () => {
 			: copyUsers.reverse();
 
 		setUsers(sortUsers);
-		setDirection(!direction);
+
 	}
 
 	const selectionColumns = (newWhichViewColumns) => {
@@ -59,9 +51,16 @@ const Users = () => {
 	}
 
 	useEffect(() => {
-		dispatch(getUsers());
+		setUsers(props.users);
+	}, [props.users]);
+
+	useEffect(() => {
 		getOptionColumns();
 	}, []);
+
+	if (!props.users) {
+		return null;
+	}
 
 	return (
 		<div>

@@ -2,7 +2,7 @@ import {
 	ProfileCard,
 	ProfileWrapper
 } from './CustomComponents';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
 	useDispatch,
 	useSelector
@@ -19,7 +19,7 @@ const User = () => {
 
 	useEffect(() => {
 		dispatch(getUser(userId));
-	}, [userId]);
+	}, [userId, dispatch]);
 
 	const {
 		name,
