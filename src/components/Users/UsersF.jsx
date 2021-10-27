@@ -11,7 +11,7 @@ import ModalColumnSelect from '../ModalColumSelect';
 
 const typeColumns = ['name', 'username', 'email', 'phone', 'website'];
 
-const Users = props => {
+const UsersF = props => {
 	const [users, setUsers] = useState([]);
 	const [direction, setDirection] = useState(true);
 	const [whichViewColumns, setWhichViewColumns] = useState(typeColumns);
@@ -168,4 +168,4 @@ const Users = props => {
 	)
 };
 
-export default Users;
+export default UsersF;

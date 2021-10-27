@@ -4,7 +4,8 @@ import {
 	useSelector
 } from 'react-redux';
 
-import Users from './Users';
+import UsersC from './UsersC';
+import UsersF from './UsersF';
 import { getUsers } from '../../core/users/users.actions';
 import { usersSelector } from '../../core/users/users.selectors';
 
@@ -17,7 +18,7 @@ const UsersComponent = () => {
 	}, [dispatch]);
 
 	return (
-		<Users
+		<UsersF
 			users={users}
 		/>
 	);
