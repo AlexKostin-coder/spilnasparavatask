@@ -4,7 +4,7 @@ import {
 	ColHead,
 	Row
 } from '../CustomComponents';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Link } from "react-router-dom";
 import ModalColumnSelect from '../ModalColumSelect';
@@ -17,7 +17,7 @@ const UsersF = props => {
 	const [direction, setDirection] = useState(true);
 	const [whichViewColumns, setWhichViewColumns] = useState(typeColumns);
 	const [showSelectColumnsModal, setShowSelectColumnsModal] = useState(false);
-
+	const ref = useRef(null);
 
 	const sortData = (field) => {
 		const copyUsers = [...users];
@@ -68,13 +68,15 @@ const UsersF = props => {
 			<Button onClick={() => setShowSelectColumnsModal(!showSelectColumnsModal)}>
 				Select columns
 			</Button>
-			<ModalColumnSelect
-				isOpen={showSelectColumnsModal}
-				toggle={() => setShowSelectColumnsModal(!showSelectColumnsModal)}
-				options={typeColumns}
-				whichViewColumns={whichViewColumns}
-				selectionColumns={selectionColumns}
-			/>
+			<div ref={ref}>
+				<ModalColumnSelect
+					isOpen={showSelectColumnsModal}
+					toggle={() => setShowSelectColumnsModal(!showSelectColumnsModal)}
+					options={typeColumns}
+					whichViewColumns={whichViewColumns}
+					selectionColumns={selectionColumns}
+				/>
+			</div>
 			<Row>
 				{
 					whichViewColumns.includes('name') ?
