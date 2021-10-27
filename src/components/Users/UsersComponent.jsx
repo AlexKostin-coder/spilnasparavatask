@@ -4,6 +4,7 @@ import {
 	useSelector
 } from 'react-redux';
 
+import { Loading } from '../CustomComponents';
 import UsersF from './UsersF';
 import { getUsers } from '../../core/users/users.actions';
 import { usersSelector } from '../../core/users/users.selectors';
@@ -30,7 +31,7 @@ const UsersComponent = () => {
 	return (
 		<>
 			{isLoading ?
-				<div>Завантаження...</div>
+				<Loading>Завантаження...</Loading>
 				:
 				<UsersF
 					users={users}

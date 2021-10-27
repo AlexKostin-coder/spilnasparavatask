@@ -133,3 +133,9 @@ export const ProfileCard = styled.div`
 		font-weight: bold;
 	}
 `;
+
+export const Loading = styled.div`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+`;

@@ -1,4 +1,5 @@
 import {
+	Loading,
 	ProfileCard,
 	ProfileWrapper
 } from './CustomComponents';
@@ -45,7 +46,7 @@ const User = () => {
 	return (
 		<>
 			{isLoading ?
-				<div>Завантаження...</div>
+				<Loading>Завантаження...</Loading>
 				:
 				<ProfileWrapper>
 					<ProfileCard>
