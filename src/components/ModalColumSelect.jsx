@@ -41,6 +41,7 @@ const ModalColumnSelect = props => {
 		<Modal>
 			<ModalHeader>
 				Select columns
+				<div className="close" onClick={toggle}>&#10006;</div>
 			</ModalHeader>
 			<ModalBody>
 				<SearchBar
@@ -66,6 +67,11 @@ const ModalColumnSelect = props => {
 					})}
 			</ModalBody>
 			<ModalFooter>
+				<ButtonModal success
+					onClick={toggle}
+				>
+					Apply
+				</ButtonModal>
 				<ButtonModal
 					onClick={toggle}
 				>

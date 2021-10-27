@@ -52,8 +52,18 @@ export const ModalHeader = styled.div`
 	height: 40px;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	padding-left: 10px;
+	padding-right: 10px;
 	color: grey;
+
+	.close {
+		cursor: pointer;
+
+		&:hover {
+			color: red;
+		}
+	}
 `;
 
 export const ModalBody = styled.div`
