@@ -25,7 +25,7 @@ const UsersComponent = () => {
 
 	useEffect(() => {
 		getData();
-	}, [dispatch]);
+	}, []);
 
 	return (
 		<>

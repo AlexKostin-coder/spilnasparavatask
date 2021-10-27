@@ -26,7 +26,7 @@ const User = () => {
 
 	useEffect(() => {
 		getData();
-	}, [userId, dispatch]);
+	}, []);
 
 	const {
 		name,
