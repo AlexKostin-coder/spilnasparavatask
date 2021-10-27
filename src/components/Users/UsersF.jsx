@@ -8,8 +8,9 @@ import React, { useEffect, useState } from 'react';
 
 import { Link } from "react-router-dom";
 import ModalColumnSelect from '../ModalColumSelect';
+import { formatDate } from '../../tools/formatDate';
 
-const typeColumns = ['name', 'username', 'email', 'phone', 'website'];
+const typeColumns = ['name', 'username', 'email', 'phone', 'website', 'date'];
 
 const UsersF = props => {
 	const [users, setUsers] = useState([]);
@@ -115,6 +116,14 @@ const UsersF = props => {
 						:
 						null
 				}
+				{
+					whichViewColumns.includes('date') ?
+						<ColHead onClick={() => sortData('date')}>
+							Date
+						</ColHead>
+						:
+						null
+				}
 			</Row>
 			{
 				users.map((user, index) => {
@@ -124,7 +133,8 @@ const UsersF = props => {
 						username,
 						email,
 						phone,
-						website
+						website,
+						date,
 					} = user;
 					return (
 						<Row key={`${id} + ${index}`}>
@@ -157,6 +167,12 @@ const UsersF = props => {
 							{
 								whichViewColumns.includes('website') ?
 									<Col>{website}</Col>
+									:
+									null
+							}
+							{
+								whichViewColumns.includes('date') ?
+									<Col>{formatDate(date)}</Col>
 									:
 									null
 							}

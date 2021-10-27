@@ -12,8 +12,9 @@ export const getUsers = () => async (dispatch, getState, api) => {
 		if (!res.status) {
 			throw new Error('Трапилась помилка!');
 		}
-
-		const { users } = normalizeData(res.data, 'users');
+		const date = new Date();
+		const newUsers = res.data.map(user => ({ ...user, date }));
+		const { users } = normalizeData(newUsers, 'users');
 
 		return dispatch({
 			type: GET_USERS,
@@ -31,7 +32,9 @@ export const getUser = (userId) => async (dispatch, getState, api) => {
 			throw new Error('Трапилась помилка!');
 		}
 
-		const { user } = normalizeData(res.data, 'user');
+		const date = new Date();
+		const newUser = { ...res.data, date };
+		const { user } = normalizeData(newUser, 'user');
 
 		return dispatch({
 			type: GET_USER,
