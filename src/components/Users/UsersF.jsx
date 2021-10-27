@@ -120,7 +120,7 @@ const UsersF = props => {
 				}
 				{
 					whichViewColumns.includes('date') ?
-						<ColHead onClick={() => sortData('date')}>
+						<ColHead>
 							Date
 						</ColHead>
 						:
